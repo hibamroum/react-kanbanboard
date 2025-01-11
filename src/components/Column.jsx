@@ -37,7 +37,7 @@ const Column = () => {
             <button>
               <FaChevronDown />
             </button>
-            <h1>Open</h1>
+            <h1>Closed</h1>
           </div>
           {/* Header Right Section */}
           <div className="flex items-center gap-2">
