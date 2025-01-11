@@ -11,7 +11,9 @@ function TaskCard() {
         {/* Task Title */}
         <h1>Task 1</h1>
         {/* Ellipsis */}
-        <FaEllipsisV fontSize={14} />
+        <button>
+          <FaEllipsisV fontSize={14} />
+        </button>
       </div>
       {/* Task Category */}
       <CustomBadge />
