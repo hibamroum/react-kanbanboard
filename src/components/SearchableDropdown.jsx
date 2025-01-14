@@ -11,59 +11,76 @@ function SearchableDropdown() {
   const categories = [
     {
       category_name: "Bug",
-      color: "red",
+      color: "red-bug",
     },
     {
       category_name: "Dashboard",
-      color: "green",
+      color: "green-dashboard",
     },
     {
       category_name: "DB",
-      color: "blue",
+      color: "babyblue-db",
     },
     {
       category_name: "Feature",
-      color: "orange",
+      color: "orange-feature",
     },
     {
       category_name: "Form",
-      color: "black",
+      color: "black-form",
     },
     {
       category_name: "Manager",
-      color: "lightblue",
+      color: "gray-manager",
     },
     {
       category_name: "UI",
-      color: "purple",
+      color: "violet-ui",
     },
   ];
   return (
     <div>
       <button
         className="flex bg-white items-center px-2 border  border-gray-500"
+        id="select_btn"
         onClick={function () {
           setIsDropdown(!isDropdown);
         }}
       >
-        Select a label <BiChevronDown />
+        <div id="cat_color"></div>
+        <p>Select a label</p>{" "}
+        <div>
+          <BiChevronDown />
+        </div>
       </button>
       {isDropdown && (
-        <div className="w-52 ">
-          <button className="bg-white p-1 rounded-md flex items-center justify-evenly mt-1">
-            <SlMagnifier color="gray" size={12} />
+        <div className="w-52 bg-black">
+          <div className="bg-white p-1 rounded-t-md flex items-center justify-evenly mt-1 border-t-gray-500">
+            <SlMagnifier color="gray" size={12} id="maginifier" />
             <input
               type="search"
               placeholder="Search Labels"
-              className=" pl-8 text-xs"
+              className=" pl-8 text-xs outline-none"
+              id="categories_input"
             />
-          </button>
-          <div className="h-fit bg-white border-t-2 rounded-md flex flex-col  text-sm p-2">
+          </div>
+          <div className="h-fit bg-white border-t-2 border-t-gray-300 rounded-b-md flex flex-col  text-sm p-1">
             {categories.map((category, index) => {
               return (
                 <button
-                  className="flex items-center gap-2 pl-10 py-2 w-full hover:bg-gray-200 "
+                  className="flex items-center gap-2 pl-10 py-1 w-full hover:bg-gray-200 "
                   key={index}
+                  onClick={function () {
+                    let select_button = document.getElementById("select_btn");
+                    select_button.childNodes[1].innerText =
+                      category.category_name;
+                    let cat_color = document.getElementById("cat_color");
+                    cat_color.setAttribute(
+                      "class",
+                      `w-6 h-2 rounded-md bg-${category.color}`
+                    );
+                    setIsDropdown(!isDropdown);
+                  }}
                 >
                   <CustomBadge color={category.color} />
                   {category.category_name}

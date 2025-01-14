@@ -19,6 +19,15 @@ export default {
       gap: {
         0.5: "2px",
       },
+      backgroundColor: {
+        "red-bug": "#EE4B2B",
+        "green-dashboard": "#00FF00",
+        "babyblue-db": "#89CFF0",
+        "orange-feature": "#FFA500",
+        "black-form": "#000000",
+        "gray-manager": "#E5E4E2",
+        "violet-ui": "#7F00FF",
+      },
     },
   },
   plugins: [],
