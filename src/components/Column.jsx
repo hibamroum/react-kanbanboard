@@ -25,7 +25,13 @@ const Column = () => {
           <div className="flex items-center gap-2">
             <div className="flex items-center text-gray-700 gap-0.5">
               <BsViewList />
-              <span className="text-xxs">0</span>
+              <span className="text-xxs">
+                {
+                  tasks.filter((task) => {
+                    return task.column.id == 1;
+                  }).length
+                }
+              </span>
             </div>
             <button
               className="bg-white"
@@ -55,6 +61,8 @@ const Column = () => {
                     due_date: "",
                   },
                 ]);
+
+                tasks.length = tasks.length + 1;
               }}
             >
               <IoMdAdd fontSize={18} />
@@ -97,7 +105,13 @@ const Column = () => {
           <div className="flex items-center gap-2">
             <div className="flex items-center text-gray-700 gap-0.5">
               <BsViewList />
-              <span className="text-xxs">0</span>
+              <span className="text-xxs">
+                {
+                  tasks.filter((task) => {
+                    return task.column.id == 2;
+                  }).length
+                }
+              </span>
             </div>
           </div>
         </div>

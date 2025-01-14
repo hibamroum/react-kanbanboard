@@ -8,7 +8,7 @@ export default {
         xs: "14px",
       },
       height: {
-        104: "432px",
+        104: "444px",
       },
       width: {
         70: "300px",
