@@ -11,31 +11,31 @@ function SearchableDropdown() {
   const categories = [
     {
       category_name: "Bug",
-      color: "red-bug",
+      color: "red",
     },
     {
       category_name: "Dashboard",
-      color: "green-dashboard",
+      color: "green",
     },
     {
       category_name: "DB",
-      color: "babyblue-db",
+      color: "blue",
     },
     {
       category_name: "Feature",
-      color: "orange-feature",
+      color: "orange",
     },
     {
       category_name: "Form",
-      color: "black-form",
+      color: "black",
     },
     {
       category_name: "Manager",
-      color: "gray-manager",
+      color: "gray",
     },
     {
       category_name: "UI",
-      color: "violet-ui",
+      color: "violet",
     },
   ];
   return (
@@ -47,7 +47,7 @@ function SearchableDropdown() {
           setIsDropdown(!isDropdown);
         }}
       >
-        <div id="cat_color"></div>
+        <div id="cat_color" style={{ backgroundColor: "red" }}></div>
         <p>Select a label</p>{" "}
         <div>
           <BiChevronDown />
@@ -75,9 +75,11 @@ function SearchableDropdown() {
                     select_button.childNodes[1].innerText =
                       category.category_name;
                     let cat_color = document.getElementById("cat_color");
+                    console.log(cat_color);
+                    cat_color.setAttribute("class", "w-6 h-2 rounded-md");
                     cat_color.setAttribute(
-                      "class",
-                      `w-6 h-2 rounded-md bg-${category.color}`
+                      "style",
+                      `background-color:${category.color}`
                     );
                     setIsDropdown(!isDropdown);
                   }}
