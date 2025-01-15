@@ -2,12 +2,9 @@ import { FaChevronDown } from "react-icons/fa6";
 import { BsViewList } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import TaskCard from "./TaskCard";
-import { storedTasks } from "../data/tasks";
-import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Column = () => {
-  const [tasks, setTasks] = useState(storedTasks);
-
+const Column = (props) => {
   return (
     <div className="flex gap-5">
       {/* Column One: Open */}
@@ -19,125 +16,64 @@ const Column = () => {
             <button>
               <FaChevronDown />
             </button>
-            <h1>Open</h1>
+            <h1>{props.title}</h1>
           </div>
           {/* Header Right Section */}
           <div className="flex items-center gap-2">
             <div className="flex items-center text-gray-700 gap-0.5">
               <BsViewList />
-              <span className="text-xxs">
-                {
-                  tasks.filter((task) => {
-                    return task.column.id == 1;
-                  }).length
-                }
-              </span>
+              <span className="text-xxs">{props.tasks.length}</span>
             </div>
-            <button
-              className="bg-white"
-              onClick={function handleAddTask() {
-                console.log("Add Task Clicked");
-                setTasks([
-                  ...tasks,
-                  {
-                    column: {
-                      id: 1,
-                      name: "Open",
+            {props.title == "Open" && (
+              <button
+                className="bg-white"
+                onClick={function handleAddTask() {
+                  console.log("Add Task Clicked");
+                  props.setTasks([
+                    ...props.tasks,
+                    {
+                      column: {
+                        id: 1,
+                        name: "Open",
+                      },
+                      id: props.tasks.length + 1,
+                      title: `Task${props.tasks.length + 1}`,
+                      task_category: "",
+                      task_number: props.tasks.length + 1,
+                      due_date: "",
                     },
-                    id:
-                      tasks.filter((task) => {
-                        return task.column.id == 1;
-                      }).length + 1,
-                    title: `Task${
-                      tasks.filter((task) => {
-                        return task.column.id == 1;
-                      }).length + 1
-                    }`,
-                    task_category: "",
-                    task_number:
-                      tasks.filter((task) => {
-                        return task.column.id == 1;
-                      }).length + 1,
-                    due_date: "",
-                  },
-                ]);
-
-                tasks.length = tasks.length + 1;
-              }}
-            >
-              <IoMdAdd fontSize={18} />
-            </button>
+                  ]);
+                  props.tasks.length = props.tasks.length + 1;
+                }}
+              >
+                <IoMdAdd fontSize={18} />
+              </button>
+            )}
           </div>
         </div>
         {/* Column Body */}
-        {tasks
-          .filter((task) => {
-            return task.column.id == 1;
-          })
-          .map((task) => {
-            return (
-              <TaskCard
-                key={`${task.column.id}-${task.id}`}
-                column_id={task.column.id}
-                task_id={task.id}
-                title={task.title}
-                categorty={task.task_category}
-                number={task.task_number}
-                due_date={task.due_date}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-            );
-          })}
-      </div>
-      {/* Column Two: Closed */}
-      <div className="w-70 h-104 bg-gray-200 p-2 overflow-y-auto ">
-        {/* Column Header */}
-        <div className=" flex justify-between items-center k">
-          {/* Header Left Section */}
-          <div className="flex items-center gap-1">
-            <button>
-              <FaChevronDown />
-            </button>
-            <h1>Closed</h1>
-          </div>
-          {/* Header Right Section */}
-          <div className="flex items-center gap-2">
-            <div className="flex items-center text-gray-700 gap-0.5">
-              <BsViewList />
-              <span className="text-xxs">
-                {
-                  tasks.filter((task) => {
-                    return task.column.id == 2;
-                  }).length
-                }
-              </span>
-            </div>
-          </div>
-        </div>
-        {/*Column Body */}
-        {tasks
-          .filter((task) => {
-            return task.column.id == 2;
-          })
-          .map((task) => {
-            return (
-              <TaskCard
-                key={`${task.column.id}-${task.id}`}
-                column_id={task.column.id}
-                task_id={task.id}
-                title={task.title}
-                categorty={task.task_category}
-                number={task.task_number}
-                due_date={task.due_date}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
-            );
-          })}
+        {props.tasks.map((task) => {
+          return (
+            <TaskCard
+              key={`${task.column.id}-${task.id}`}
+              column_id={task.column.id}
+              task_id={task.id}
+              title={task.title}
+              categorty={task.task_category}
+              number={task.task_number}
+              due_date={task.due_date}
+              tasks={props.tasks}
+              setTasks={props.setTasks}
+            />
+          );
+        })}
       </div>
     </div>
   );
 };
-
+Column.propTypes = {
+  title: PropTypes.string,
+  tasks: PropTypes.array,
+  setTasks: PropTypes.func,
+};
 export default Column;

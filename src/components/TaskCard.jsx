@@ -21,7 +21,7 @@ function TaskCard(props) {
             //The filter function in JavaScript is used to create a new array with only the elements that satisfy a given condition.
             const newTasks = props.tasks.filter((task) => {
               return (
-                task.id !== props.task_id && task.column.id !== props.column_id
+                task.id !== props.task_id || task.column.id !== props.column_id
               );
             });
             props.setTasks(newTasks);

@@ -3,41 +3,11 @@ import { BiChevronDown } from "react-icons/bi";
 import { SlMagnifier } from "react-icons/sl";
 
 import CustomBadge from "./Badge";
-function SearchableDropdown() {
-  const [selectedOption, setSelectedOption] = useState(null);
+import PropTypes from "prop-types";
+function SearchableDropdown(props) {
   const [isDropdown, setIsDropdown] = useState(false);
-  const [searchValue, setSearchValue] = useState("Search Labels");
+  //const [searchValue, setSearchValue] = useState("Search Labels");
 
-  const categories = [
-    {
-      category_name: "Bug",
-      color: "red",
-    },
-    {
-      category_name: "Dashboard",
-      color: "green",
-    },
-    {
-      category_name: "DB",
-      color: "blue",
-    },
-    {
-      category_name: "Feature",
-      color: "orange",
-    },
-    {
-      category_name: "Form",
-      color: "black",
-    },
-    {
-      category_name: "Manager",
-      color: "gray",
-    },
-    {
-      category_name: "UI",
-      color: "violet",
-    },
-  ];
   return (
     <div>
       <button
@@ -47,7 +17,7 @@ function SearchableDropdown() {
           setIsDropdown(!isDropdown);
         }}
       >
-        <div id="cat_color" style={{ backgroundColor: "red" }}></div>
+        <div id="cat_color"></div>
         <p>Select a label</p>{" "}
         <div>
           <BiChevronDown />
@@ -65,7 +35,7 @@ function SearchableDropdown() {
             />
           </div>
           <div className="h-fit bg-white border-t-2 border-t-gray-300 rounded-b-md flex flex-col  text-sm p-1">
-            {categories.map((category, index) => {
+            {props.categories.map((category, index) => {
               return (
                 <button
                   className="flex items-center gap-2 pl-10 py-1 w-full hover:bg-gray-200 "
@@ -75,13 +45,16 @@ function SearchableDropdown() {
                     select_button.childNodes[1].innerText =
                       category.category_name;
                     let cat_color = document.getElementById("cat_color");
-                    console.log(cat_color);
-                    cat_color.setAttribute("class", "w-6 h-2 rounded-md");
+
+                    cat_color.setAttribute("class", "w-5 h-2 rounded-md");
                     cat_color.setAttribute(
                       "style",
                       `background-color:${category.color}`
                     );
                     setIsDropdown(!isDropdown);
+                    props.setSelectedOption(category.category_name);
+                    props.setCategoryId(category.id);
+                    console.log(category.id);
                   }}
                 >
                   <CustomBadge color={category.color} />
@@ -96,4 +69,9 @@ function SearchableDropdown() {
   );
 }
 
+SearchableDropdown.propTypes = {
+  setSelectedOption: PropTypes.func,
+  categories: PropTypes.array,
+  setCategoryId: PropTypes.func,
+};
 export default SearchableDropdown;
