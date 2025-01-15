@@ -56,6 +56,8 @@ function KanbanBoard() {
               title={col.name}
               tasks={col.tasks}
               color={col.color ? col.color : ""}
+              list={lists}
+              setLists={setLists}
             />
           );
         })}

@@ -1,9 +1,10 @@
-import { FaChevronDown } from "react-icons/fa6";
+import { FaChevronDown, FaGear } from "react-icons/fa6";
 import { BsViewList } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import TaskCard from "./TaskCard";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { VscGear } from "react-icons/vsc";
 
 const Column = (props) => {
   const [tasks, setTasks] = useState(props.tasks);
@@ -19,7 +20,7 @@ const Column = (props) => {
             </button>
             <h1
               style={{ backgroundColor: props.color }}
-              className="w-fit h-fit rounded-md p-1"
+              className="w-fit h-fit rounded-3xl px-2 "
             >
               {props.title}
             </h1>
@@ -31,27 +32,43 @@ const Column = (props) => {
               <span className="text-xxs">{props.tasks.length}</span>
             </div>
             {props.title !== "Closed" && (
-              <button
-                className="bg-white"
-                onClick={function handleAddTask() {
-                  console.log("Add Task Clicked");
+              <div className="flex space-x-1">
+                <button
+                  className="bg-white p-1"
+                  onClick={function handleAddTask() {
+                    console.log("Add Task Clicked");
 
-                  setTasks([
-                    ...tasks,
-                    {
-                      id: `${props.id}-${props.tasks.length + 1}`,
-                      title: `Task${props.tasks.length + 1}`,
-                      task_category: "",
-                      task_number: props.tasks.length + 1,
-                      due_date: "",
-                    },
-                  ]);
+                    setTasks([
+                      ...tasks,
+                      {
+                        id: `${props.id}-${props.tasks.length + 1}`,
+                        title: `Task${props.tasks.length + 1}`,
+                        task_category: "",
+                        task_number: props.tasks.length + 1,
+                        due_date: "",
+                      },
+                    ]);
 
-                  props.tasks.length = props.tasks.length + 1;
-                }}
-              >
-                <IoMdAdd fontSize={18} />
-              </button>
+                    props.tasks.length = props.tasks.length + 1;
+                  }}
+                >
+                  <IoMdAdd fontSize={20} />
+                </button>
+                {props.title !== "Closed" && props.title !== "Open" && (
+                  <button
+                    className="bg-white p-1"
+                    onClick={function handleAddTask() {
+                      console.log("Delete Column Clicked");
+                      props.setLists((prevLists) => {
+                        // Filter out the task with the specific task_id
+                        return prevLists.filter((list) => list.id !== props.id);
+                      });
+                    }}
+                  >
+                    <VscGear fontSize={18} />
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -80,5 +97,7 @@ Column.propTypes = {
   title: PropTypes.string,
   tasks: PropTypes.array,
   color: PropTypes.string,
+  lists: PropTypes.array,
+  setLists: PropTypes.func,
 };
 export default Column;
