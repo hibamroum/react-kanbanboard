@@ -3,11 +3,12 @@ import { BsViewList } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 import TaskCard from "./TaskCard";
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 const Column = (props) => {
+  const [tasks, setTasks] = useState(props.tasks);
   return (
     <div className="flex gap-5">
-      {/* Column One: Open */}
       <div className="w-70 h-104 bg-gray-200 p-2  overflow-y-auto ">
         {/* Column Header */}
         <div className=" flex justify-between items-center  ">
@@ -16,7 +17,12 @@ const Column = (props) => {
             <button>
               <FaChevronDown />
             </button>
-            <h1>{props.title}</h1>
+            <h1
+              style={{ backgroundColor: props.color }}
+              className="w-fit h-fit rounded-md p-1"
+            >
+              {props.title}
+            </h1>
           </div>
           {/* Header Right Section */}
           <div className="flex items-center gap-2">
@@ -24,25 +30,23 @@ const Column = (props) => {
               <BsViewList />
               <span className="text-xxs">{props.tasks.length}</span>
             </div>
-            {props.title == "Open" && (
+            {props.title !== "Closed" && (
               <button
                 className="bg-white"
                 onClick={function handleAddTask() {
                   console.log("Add Task Clicked");
-                  props.setTasks([
-                    ...props.tasks,
+
+                  setTasks([
+                    ...tasks,
                     {
-                      column: {
-                        id: 1,
-                        name: "Open",
-                      },
-                      id: props.tasks.length + 1,
+                      id: `${props.id}-${props.tasks.length + 1}`,
                       title: `Task${props.tasks.length + 1}`,
                       task_category: "",
                       task_number: props.tasks.length + 1,
                       due_date: "",
                     },
                   ]);
+
                   props.tasks.length = props.tasks.length + 1;
                 }}
               >
@@ -52,18 +56,18 @@ const Column = (props) => {
           </div>
         </div>
         {/* Column Body */}
-        {props.tasks.map((task) => {
+        {tasks.map((task) => {
           return (
             <TaskCard
-              key={`${task.column.id}-${task.id}`}
-              column_id={task.column.id}
+              key={`${props.id}-${task.id}`}
+              column_id={props.id}
               task_id={task.id}
               title={task.title}
-              categorty={task.task_category}
+              category={task.task_category}
               number={task.task_number}
               due_date={task.due_date}
               tasks={props.tasks}
-              setTasks={props.setTasks}
+              setTasks={setTasks}
             />
           );
         })}
@@ -72,8 +76,9 @@ const Column = (props) => {
   );
 };
 Column.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   tasks: PropTypes.array,
-  setTasks: PropTypes.func,
+  color: PropTypes.string,
 };
 export default Column;

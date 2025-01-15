@@ -1,0 +1,42 @@
+{
+    "status": "ok",
+    "totalResults": 2,
+    "columns": [
+        {
+            "id": 1,
+            "name": "Open",
+            "tasks": [
+                {
+                    "id": "1-1",
+                    "title": "Task 1",
+                    "task_status": "Open",
+                    "task_category": "UI",
+                    "task_number": 1,
+                    "due_date": "Feb 17"
+                },
+                {
+                    "id": "1-2",
+                    "title": "Task 2",
+                    "task_status": "Open",
+                    "task_category": "Feature",
+                    "task_number": 2,
+                    "due_date": "Feb 17"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Closed",
+            "tasks": [
+                {
+                    "id": "2-1",
+                    "title": "Task 3",
+                    "task_status": "Closed",
+                    "task_category": "Feature",
+                    "task_number": 3,
+                    "due_date": "Feb 17"
+                }
+            ]
+        }
+    ]
+}

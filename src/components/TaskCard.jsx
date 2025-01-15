@@ -17,14 +17,17 @@ function TaskCard(props) {
         {/* Ellipsis */}
         <button
           onClick={function () {
-            console.log(`${props.column_id}-${props.task_id}`);
-            //The filter function in JavaScript is used to create a new array with only the elements that satisfy a given condition.
-            const newTasks = props.tasks.filter((task) => {
-              return (
-                task.id !== props.task_id || task.column.id !== props.column_id
-              );
+            //functional form of setState, guarantees that you're working with the most recent state.
+            props.setTasks((prevTasks) => {
+              // Filter out the task with the specific task_id
+              return prevTasks.filter((task) => task.id !== props.task_id);
             });
-            props.setTasks(newTasks);
+            props.tasks.length--;
+            /*
+              - Instead of directly using props.tasks inside the onClick handler, we pass a function to setTasks, which receives the previous state (prevTasks) as an argument. This ensures that you're always working with the latest state, even if it's being updated asynchronously.
+              - The filter method will then return a new array without the deleted task, and the state will be updated accordingly.
+            
+            */
           }}
         >
           <FaEllipsisV fontSize={14} />
@@ -51,7 +54,7 @@ function TaskCard(props) {
 }
 TaskCard.propTypes = {
   column_id: PropTypes.number,
-  task_id: PropTypes.number,
+  task_id: PropTypes.string,
   title: PropTypes.string,
   category: PropTypes.string,
   number: PropTypes.number,

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import SearchableDropdown from "./SearchableDropdown";
-import Column from "./Column";
+
 import { useState } from "react";
 function NewColumnForm(props) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -51,15 +51,41 @@ function NewColumnForm(props) {
         <h1>Scope</h1>
         <p>Issues must match this scope to appear in this list</p>
         <SearchableDropdown
-          setSelectedOption={setSelectedOption}
           categories={categories}
+          setSelectedOption={setSelectedOption}
           setCategoryId={setCategoryId}
         />
       </div>
       <div className="space-x-2">
         <button
           className="bg-blue-600 text-white border-2 border-gray-400 px-2"
-          onClick={function () {}}
+          onClick={function () {
+            props.setLists([
+              ...props.lists,
+              {
+                id: categoryId,
+                name: selectedOption,
+                color:
+                  selectedOption == "Bug"
+                    ? "red"
+                    : selectedOption == "Dashboard"
+                    ? "green"
+                    : selectedOption == "DB"
+                    ? "blue"
+                    : selectedOption == "Feature"
+                    ? "orange"
+                    : selectedOption == "Form"
+                    ? "black"
+                    : selectedOption == "Manager"
+                    ? "gray"
+                    : selectedOption == "UI"
+                    ? "violet"
+                    : "",
+                tasks: [],
+              },
+            ]);
+            props.setIsNewList(false);
+          }}
         >
           Add to board
         </button>
@@ -77,5 +103,7 @@ function NewColumnForm(props) {
 }
 NewColumnForm.propTypes = {
   setIsNewList: PropTypes.func,
+  lists: PropTypes.array,
+  setLists: PropTypes.func,
 };
 export default NewColumnForm;

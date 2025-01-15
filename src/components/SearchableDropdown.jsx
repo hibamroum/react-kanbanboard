@@ -54,7 +54,6 @@ function SearchableDropdown(props) {
                     setIsDropdown(!isDropdown);
                     props.setSelectedOption(category.category_name);
                     props.setCategoryId(category.id);
-                    console.log(category.id);
                   }}
                 >
                   <CustomBadge color={category.color} />
@@ -70,8 +69,8 @@ function SearchableDropdown(props) {
 }
 
 SearchableDropdown.propTypes = {
-  setSelectedOption: PropTypes.func,
   categories: PropTypes.array,
+  setSelectedOption: PropTypes.func,
   setCategoryId: PropTypes.func,
 };
 export default SearchableDropdown;
