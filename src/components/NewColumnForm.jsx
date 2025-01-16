@@ -81,9 +81,13 @@ function NewColumnForm(props) {
                     : selectedOption == "UI"
                     ? "violet"
                     : "",
-                tasks: [],
+
+                tasks: props.storedTasks.filter((task) => {
+                  return task.task_category == selectedOption.toLowerCase();
+                }),
               },
             ]);
+
             props.setIsNewList(false);
           }}
         >
@@ -105,5 +109,7 @@ NewColumnForm.propTypes = {
   setIsNewList: PropTypes.func,
   lists: PropTypes.array,
   setLists: PropTypes.func,
+  storedTasks: PropTypes.array,
+  setStoredTasks: PropTypes.func,
 };
 export default NewColumnForm;

@@ -9,18 +9,24 @@ function KanbanBoard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // const [openTasks, setOpenTasks] = useState(
-  //   storedTasks.filter((task) => {
-  //     return task.column.id == 1;
-  //   })
-  // );
-  // const [closedTasks, setClosedTasks] = useState(
-  //   storedTasks.filter((task) => {
-  //     return task.column.id == 2;
-  //   })
-  // );
-
   const [isNewList, setIsNewList] = useState(false);
+  const [storedTasks, setStoredTasks] = useState();
+
+  const fetchTasks = async () => {
+    let dataURL = "../../data/tasks.json";
+    try {
+      const response = await fetch(dataURL);
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const result = await response.json();
+      setStoredTasks(result.tasks);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +58,7 @@ function KanbanBoard() {
           return (
             <Column
               key={index}
+              index={index}
               id={col.id}
               title={col.name}
               tasks={col.tasks}
@@ -66,6 +73,7 @@ function KanbanBoard() {
             className="border-2 px-2 rounded-xmd"
             onClick={function () {
               setIsNewList(true);
+              fetchTasks();
             }}
           >
             + New list
@@ -76,6 +84,8 @@ function KanbanBoard() {
             setIsNewList={setIsNewList}
             lists={lists}
             setLists={setLists}
+            storedTasks={storedTasks}
+            setStoredTasks={setStoredTasks}
           />
         )}
       </div>

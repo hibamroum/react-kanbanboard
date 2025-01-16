@@ -1,0 +1,118 @@
+{
+    "totalResults": 14,
+    "tasks":[
+        {
+          "id": "3-1",
+          "title": "Fix login error",
+          "task_category": "bug",
+          "task_number": 101,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "4-1",
+          "title": "Add dashboard analytics",
+          "task_category": "dashboard",
+          "task_number": 102,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "5-1",
+          "title": "Optimize database queries",
+          "task_category": "db",
+          "task_number": 103,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "7-1",
+          "title": "Implement form validation",
+          "task_category": "form",
+          "task_number": 104,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "8-1",
+          "title": "Prepare manager report",
+          "task_category": "manager",
+          "task_number": 105,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "6-1",
+          "title": "Develop new feature: user profiles",
+          "task_category": "feature",
+          "task_number": 106,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "9-1",
+          "title": "UI redesign for homepage",
+          "task_category": "ui",
+          "task_number": 107,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "3-2",
+          "title": "Resolve signup page 3",
+          "task_category": "bug",
+          "task_number": 108,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "4-2",
+          "title": "Add filter option in dashboard",
+          "task_category": "dashboard",
+          "task_number": 109,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "5-2",
+          "title": "Backup database daily",
+          "task_category": "db",
+          "task_number": 110,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "7-2",
+          "title": "Enhance form accessibility",
+          "task_category": "form",
+          "task_number": 111,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "8-2",
+          "title": "Organize manager's weekly meeting",
+          "task_category": "manager",
+          "task_number": 112,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        },
+        {
+          "id": "6-2",
+          "title": "Introduce dark mode feature",
+          "task_category": "feature",
+          "task_number": 113,
+          "due_date": "2025-02-17",
+          "task_status": "open"
+        },
+        {
+          "id": "9-2",
+          "title": "Fix button alignment on UI",
+          "task_category": "ui",
+          "task_number": 114,
+          "due_date": "2025-02-17",
+          "task_status": "closed"
+        }
+      ]
+      
+}
